@@ -1,0 +1,33 @@
+version: '3.7'
+
+volumes:
+  mysql-data:
+    driver: local
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: training-mysql
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3336:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "treinamento@mysql"
+      MYSQL_DATABASE: "training"
+    networks:
+      - mysql-compose-network
+
+  app:
+    image: ambientum/php:7.2-nginx
+    container_name: training-app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "8980:8080"
+    networks:
+      - mysql-compose-network
+
+networks: 
+  mysql-compose-network:
+    driver: bridge
