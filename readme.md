@@ -24,3 +24,15 @@ O usupasswordário padrão:
 email: admin@fortics.com.br
 senha: password
 ```
+
+## Roteiro
+
+1. Um usuário pode ler todas as tarefa;
+
+2. Um usuário pode ler uma única tarefa;
+
+3. Um usuário autenticado pode criar uma nova tarefa;
+
+4. Um usuário autorizado pode atualizar uma tarefa;
+
+5. Um usuário autorizado pode excluir a tarefa;
