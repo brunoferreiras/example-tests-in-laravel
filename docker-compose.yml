@@ -25,6 +25,8 @@ services:
       - .:/var/www/app
     ports:
       - "8980:8080"
+    environment:
+      XDEBUG_ENABLED: 'true'
     networks:
       - mysql-compose-network
 

@@ -25,6 +25,11 @@ email: admin@fortics.com.br
 senha: password
 ```
 
+## Docs
+```
+https://laravel.com/docs/5.8/http-tests
+```
+
 ## Roteiro
 
 1. Um usuário pode ler todas as tarefa;
