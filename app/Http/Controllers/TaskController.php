@@ -9,7 +9,7 @@ class TaskController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth')->except(['index','show']);
+        $this->middleware('auth')->except(['index','show']);
     }
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        // $tasks = Task::latest()->get();
-        // return view('tasks.index', compact('tasks'));
+        $tasks = Task::latest()->get();
+        return view('tasks.index', compact('tasks'));
     }
     /**
      * Show the form for creating a new resource.
@@ -28,7 +28,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        // return view('tasks.create');
+        return view('tasks.create');
     }
     /**
      * Store a newly created resource in storage.
@@ -38,16 +38,17 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'title' => 'required',
-        //     'description' => 'required'
-        // ]);
-        // $task = Task::create([
-        //     'title' => $request->get('title'),
-        //     'description' => $request->get('description'),
-        //     'user_id' => Auth::id()
-        // ]);
-        // return redirect('/tasks/'.$task->id);
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
+
+        $task = Task::create([
+            'title' => $request->get('title'),
+            'description' => $request->get('description'),
+            'user_id' => Auth::id()
+        ]);
+        return redirect('/tasks/'.$task->id);
     }
     /**
      * Display the specified resource.
@@ -57,7 +58,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        // return view('tasks.show', compact('task'));
+        return view('tasks.show', compact('task'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -67,7 +68,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        // return view('tasks.edit', compact('task'));
+        return view('tasks.edit', compact('task'));
     }
     /**
      * Update the specified resource in storage.
@@ -78,9 +79,9 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        // $this->authorize('update', $task);
-        // $task->update($request->all());
-        // return redirect('/tasks/'.$task->id);
+        $this->authorize('update', $task);
+        $task->update($request->all());
+        return redirect('/tasks/'.$task->id);
     }
     /**
      * Remove the specified resource from storage.
@@ -90,8 +91,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        // $this->authorize('delete', $task);
-        // $task->delete();
-        // return redirect('/tasks');
+        $this->authorize('delete', $task);
+        $task->delete();
+        return redirect('/tasks');
     }
 }
